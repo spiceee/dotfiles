@@ -35,8 +35,8 @@ setopt SHARE_HISTORY          # share history between open shells
 ###
 # Setup vars
 ###
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:$PATH"
-TZ="Australia/Sydney"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:/opt/local/lib/postgresql83/bin:/opt/local/lib/mysql5/bin/:$PATH"
+TZ="Brazil/Brasilia"
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
@@ -46,7 +46,8 @@ HOSTNAME="`hostname`"
 export PAGER='less'
 export PATH=$PATH:~/bin
 export SHELL="/bin/zsh"
-export RUBYLIB="/Users/brad/projects/scripts/lib"
+export GEM_HOME=/Library/Ruby/Gems/1.8
+#export GEM_PATH=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
 
 if [[ -f "/usr/bin/mate_wait" ]] then
   export EDITOR="mate_wait"
@@ -101,10 +102,13 @@ alias top="top -o cpu"
 alias mtop="top -o rsize"
 alias sr="screen -r"
 alias all_rw="sudo find . -type d -exec sudo chmod 0777 {} \; && sudo find . -type f -exec sudo chmod 0666 {} \;"
+alias sgi="sudo gem install "
+alias sgl="sudo gem list "
+alias sglpg="sudo gem list | grep "
 
 #mysql helpers
-alias mysqlstart='sudo /opt/local/bin/mysqld_safe5'
-# alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
+alias mysqlstart='sudo /opt/local/bin/mysqld_safe5 --user=mysql &'
+alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
 
 # rails helpers 
 alias ss="rm -f log/development.log && ruby script/server"
@@ -146,11 +150,6 @@ function precmd {
 }
 
 RPS1="$PR_MAGENTA(%D{%I:%M %p %d-%m-%y})$PR_NO_COLOR"
-
-
-
-
-
 
 
 
